@@ -23,6 +23,16 @@ RSpec.describe GardeRobe do
       expect(combinaisons).to eq([])
     end
 
+    it "renvoie une liste de 5 éléments de 50cm quand des éléments de 50cm sont disponibles" do
+      # étant donné
+      element_de_50cm = [50]
+      cinq_fois_cet_element = [[50, 50, 50, 50, 50]]
+      # quand
+      combinaisons = @garde_robe.combinaisons(element_de_50cm)
+      # alors
+      expect(combinaisons).to eq(cinq_fois_cet_element)
+    end
+
     it "renvoie toutes les combinaisons d'un même rangement s'il peut remplir la garde-robe" do
       # étant donné
       rangements = [50, 250, 25]
@@ -40,6 +50,16 @@ RSpec.describe GardeRobe do
       combinaisons = @garde_robe.combinaisons(rangement_non_compatible)
       # alors
       expect(combinaisons).to eq([])
+    end
+
+    it "combine deux éléments qui permettent de remplir la largeur de la garde-robe" do
+      # étant donné
+      rangement_non_compatible = [50, 200]
+      # quand
+      combinaisons = @garde_robe.combinaisons(rangement_non_compatible)
+      # alors
+      combinaisons.at(0).should =~ [50, 50, 50, 50, 50]
+      combinaisons.at(1).should =~ [50, 200]
     end
   end
 end
