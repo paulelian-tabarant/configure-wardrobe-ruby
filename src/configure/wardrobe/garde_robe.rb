@@ -6,11 +6,14 @@ class GardeRobe
   end
 
   def combinaisons(elements)
-    if elements == [50]
-      nombre_elements = @largeur / 50
-      return [[50] * nombre_elements]
+    [] if elements == []
+
+    resultat = []
+    elements.each do |element|
+      nombre_elements = @largeur / element
+      resultat << [element] * nombre_elements
     end
 
-    []
+    resultat
   end
 end
