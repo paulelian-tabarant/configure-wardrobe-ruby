@@ -42,5 +42,16 @@ RSpec.describe GardeRobe do
       # alors
       expect(combinaisons).to eq(n_fois_chaque_rangement)
     end
+
+    it "est capable d'exclure les rangements non compatibles" do
+      # étant donné
+      rangement_non_compatible = [21]
+      # quand
+      combinaisons = @garde_robe.combinaisons(rangement_non_compatible)
+      # alors
+      expect(combinaisons).to eq([])
+    end
+
+
   end
 end
