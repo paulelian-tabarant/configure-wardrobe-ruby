@@ -1,0 +1,5 @@
+class GardeRobe
+  @largeur: Integer
+
+  def combinaisons: -> Array[Array[Integer]]
+end

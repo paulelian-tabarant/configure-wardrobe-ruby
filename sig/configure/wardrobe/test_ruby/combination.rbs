@@ -1,0 +1,7 @@
+module Configure
+  module Wardrobe
+    module TestRuby
+      def ne_renvoie_rien_quand_aucun_élément_dans_la_garde_robe: -> untyped
+    end
+  end
+end
