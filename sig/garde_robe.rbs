@@ -6,7 +6,7 @@ class GardeRobe
   private
 
   def combinaisons_avec: -> Array[Combinaison]
-  def combinaisons_avec_n_fois: -> Array[Combinaison]
+  def combinaisons_avec_m_fois: -> Array[Combinaison]
   def combiner: -> Combinaison
   def fit?: -> bool
   def max_elements: -> Integer

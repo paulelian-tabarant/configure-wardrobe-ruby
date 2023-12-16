@@ -9,18 +9,12 @@ class GardeRobe
     combinaisons = []
 
     elements.each do |element|
-
       elements.each do |autre_element|
-        candidats = combinaisons_avec(element, autre_element)
-
-        candidats.each do |candidat|
-          combinaisons << candidat unless combinaisons.include?(candidat)
-        end
+        combinaisons += combinaisons_avec(element, autre_element)
       end
-
     end
 
-    combinaisons
+    combinaisons.uniq { |c| c.elements.sort }
   end
 
   private
@@ -29,13 +23,13 @@ class GardeRobe
     sortie = []
 
     (0..max_elements(element)).each do |m|
-      sortie += combinaisons_avec_n_fois(m, element, autre_element)
+      sortie += combinaisons_avec_m_fois(m, element, autre_element)
     end
 
     sortie
   end
 
-  def combinaisons_avec_n_fois(m, element, autre_element)
+  def combinaisons_avec_m_fois(m, element, autre_element)
     sortie = []
 
     (0..max_elements(autre_element)).each do |n|
