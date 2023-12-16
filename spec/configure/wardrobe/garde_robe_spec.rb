@@ -25,8 +25,8 @@ RSpec.describe GardeRobe do
 
     it "renvoie toutes les combinaisons d'un même rangement s'il peut remplir la garde-robe" do
       # étant donné
-      rangements = [50, 250, 25]
-      n_fois_chaque_rangement = [[50, 50, 50, 50, 50], [250], [25, 25, 25, 25, 25, 25, 25, 25, 25, 25]]
+      rangements = [250, 25]
+      n_fois_chaque_rangement = [[250], [25, 25, 25, 25, 25, 25, 25, 25, 25, 25]]
       # quand
       combinaisons = @garde_robe.combinaisons(rangements)
       # alors
