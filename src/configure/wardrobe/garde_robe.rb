@@ -11,17 +11,12 @@ class GardeRobe
     elements.each do |element|
 
       elements.each do |autre_element|
-        next if autre_element == element
-
-        (1..max_elements(element)).each do |n|
-          essai = combinaison([element] * n + [autre_element])
+        (0..max_elements(element)).each do |n|
+          essai = combiner([element] * n + [autre_element])
           combinaisons << essai if peut_remplir?(essai) && !combinaisons.include?(essai)
         end
       end
 
-      nombre_elements = @largeur / element
-      essai = combinaison([element] * nombre_elements)
-      combinaisons << essai if peut_remplir?(essai)
     end
 
     combinaisons
@@ -37,7 +32,7 @@ class GardeRobe
     @largeur / element
   end
 
-  def combinaison(elements)
+  def combiner(elements)
     Combinaison.new(elements)
   end
 
