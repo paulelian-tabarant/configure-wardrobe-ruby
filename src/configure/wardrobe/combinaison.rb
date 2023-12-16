@@ -5,6 +5,10 @@ class Combinaison
     @elements = elements
   end
 
+  def largeur
+    @elements.sum
+  end
+
   def ==(other)
     @elements.sort == other.elements.sort
   end

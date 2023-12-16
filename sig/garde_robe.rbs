@@ -1,5 +1,11 @@
 class GardeRobe
   @largeur: Integer
 
-  def combinaisons: -> Array[Array[Integer]]
+  def combinaisons: -> Array[Combinaison]
+
+  private
+
+  def combinaison: -> Combinaison
+  def max_elements: -> Integer
+  def peut_remplir?: -> bool
 end
