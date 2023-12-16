@@ -41,5 +41,34 @@ RSpec.describe GardeRobe do
       # alors
       expect(combinaisons).to eq([])
     end
+
+    it "donne toutes les sommes exactes possibles de deux rangements" do
+      # étant donné
+      @garde_robe = GardeRobe.new(1000)
+      rangements_qui_remplissent_2_par2 = [501, 502, 503, 497, 498, 499]
+
+      # quand
+      combinaisons = @garde_robe.combinaisons(rangements_qui_remplissent_2_par2)
+
+      # alors
+      expect(combinaisons.size).to eq(3)
+      expect(combinaisons).to include([501, 499])
+      expect(combinaisons).to include([502, 498])
+      expect(combinaisons).to include([503, 497])
+    end
+
+    it "donne les combinaisons de n fois un élément et m fois un autre" do
+      # étant donné
+      @garde_robe = GardeRobe.new(1000)
+      rangements_qui_remplissent_2_par2 = [425, 150, 550]
+
+      # quand
+      combinaisons = @garde_robe.combinaisons(rangements_qui_remplissent_2_par2)
+
+      # alors
+      expect(combinaisons.size).to eq(2)
+      expect(combinaisons).to include([425, 425, 150])
+      expect(combinaisons).to include([150, 150, 150, 550])
+    end
   end
 end
