@@ -26,24 +26,24 @@ class GardeRobe
   private
 
   def combinaisons_avec(element, autre_element)
-    combinaisons = []
+    sortie = []
 
-    (0..max_elements(element)).each do |n|
-      combinaisons += combinaisons_avec_n_fois(n, element, autre_element)
+    (0..max_elements(element)).each do |m|
+      sortie += combinaisons_avec_n_fois(m, element, autre_element)
     end
 
-    combinaisons
+    sortie
   end
 
-  def combinaisons_avec_n_fois(n, element, autre_element)
-    combinaisons = []
+  def combinaisons_avec_n_fois(m, element, autre_element)
+    sortie = []
 
-    (0..max_elements(autre_element)).each do |m|
-      essai = combiner([element] * n + [autre_element] * m)
-      combinaisons << essai if fit?(essai)
+    (0..max_elements(autre_element)).each do |n|
+      essai = combiner([element] * m + [autre_element] * n)
+      sortie << essai if fit?(essai)
     end
 
-    combinaisons
+    sortie
   end
 
   def fit?(essai)
