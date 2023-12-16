@@ -1,0 +1,5 @@
+class Combinaison
+  @elements: Array[Integer]
+
+  attr_reader elements: Array[Integer]
+end

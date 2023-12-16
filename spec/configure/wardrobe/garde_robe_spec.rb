@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "../../../src/configure/wardrobe/garde_robe"
-
-# aucun element dans la garde robe -> []
-# un élément candidat pour la taille donnée -> N fois cet élément
-# un élément candidat et un autre qui ne rentre pas -> N fois l'élément candidat
-# deux éléments candidats -> N fois la combinaison de chaque, + la combinaison possible entre les 2
-# trois éléments candidats
+require_relative "../../../src/configure/wardrobe/combinaison"
 
 RSpec.describe GardeRobe do
   before(:all) do
@@ -26,7 +21,11 @@ RSpec.describe GardeRobe do
     it "renvoie toutes les combinaisons d'un même rangement s'il peut remplir la garde-robe" do
       # étant donné
       rangements = [250, 25]
-      n_fois_chaque_rangement = [[250], [25, 25, 25, 25, 25, 25, 25, 25, 25, 25]]
+
+      n_fois_chaque_rangement = [
+        Combinaison.new([250]),
+        Combinaison.new([25, 25, 25, 25, 25, 25, 25, 25, 25, 25])
+      ]
       # quand
       combinaisons = @garde_robe.combinaisons(rangements)
       # alors
@@ -47,14 +46,17 @@ RSpec.describe GardeRobe do
       @garde_robe = GardeRobe.new(1000)
       rangements_qui_remplissent_2_par2 = [501, 502, 503, 497, 498, 499]
 
+      attendu = [
+        Combinaison.new([501, 499]),
+        Combinaison.new([502, 498]),
+        Combinaison.new([503, 497])
+      ]
+
       # quand
       combinaisons = @garde_robe.combinaisons(rangements_qui_remplissent_2_par2)
 
       # alors
-      expect(combinaisons.size).to eq(3)
-      expect(combinaisons).to include([501, 499].sort)
-      expect(combinaisons).to include([502, 498].sort)
-      expect(combinaisons).to include([503, 497].sort)
+      expect(combinaisons).to eq(attendu)
     end
 
     it "donne les combinaisons de n fois un élément et m fois un autre" do
@@ -62,13 +64,18 @@ RSpec.describe GardeRobe do
       @garde_robe = GardeRobe.new(1000)
       rangements_qui_remplissent_2_par2 = [425, 150, 550]
 
+      attendu = [
+        Combinaison.new([425, 425, 150]),
+        Combinaison.new([150, 150, 150, 550])
+      ]
+
       # quand
       combinaisons = @garde_robe.combinaisons(rangements_qui_remplissent_2_par2)
 
       # alors
-      expect(combinaisons.size).to eq(2)
-      expect(combinaisons).to include([425, 425, 150].sort)
-      expect(combinaisons).to include([150, 150, 150, 550].sort)
+      expect(combinaisons).to eq(attendu)
     end
   end
 end
+
+
