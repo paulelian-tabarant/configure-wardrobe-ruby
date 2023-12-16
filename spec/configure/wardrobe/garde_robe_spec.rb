@@ -20,23 +20,23 @@ RSpec.describe GardeRobe do
 
     it "renvoie toutes les combinaisons d'un même rangement s'il peut remplir la garde-robe" do
       # étant donné
-      rangements = [250, 25]
+      elements_qui_fit_avec_n_fois = [250, 25]
 
       n_fois_chaque_rangement = [
         Combinaison.new([250]),
         Combinaison.new([25, 25, 25, 25, 25, 25, 25, 25, 25, 25])
       ]
       # quand
-      combinaisons = @garde_robe.combinaisons(rangements)
+      combinaisons = @garde_robe.combinaisons(elements_qui_fit_avec_n_fois)
       # alors
       expect(combinaisons).to eq(n_fois_chaque_rangement)
     end
 
     it "est capable d'exclure les rangements non compatibles" do
       # étant donné
-      rangement_non_compatible = [21]
+      element_qui_ne_fit_pas = [21]
       # quand
-      combinaisons = @garde_robe.combinaisons(rangement_non_compatible)
+      combinaisons = @garde_robe.combinaisons(element_qui_ne_fit_pas)
       # alors
       expect(combinaisons).to eq([])
     end
@@ -44,7 +44,7 @@ RSpec.describe GardeRobe do
     it "donne toutes les sommes exactes possibles de deux rangements" do
       # étant donné
       @garde_robe = GardeRobe.new(1000)
-      rangements_qui_remplissent_2_par2 = [501, 502, 503, 497, 498, 499]
+      elements_qui_fit_2_par_2 = [501, 502, 503, 497, 498, 499]
 
       attendu = [
         Combinaison.new([501, 499]),
@@ -53,7 +53,7 @@ RSpec.describe GardeRobe do
       ]
 
       # quand
-      combinaisons = @garde_robe.combinaisons(rangements_qui_remplissent_2_par2)
+      combinaisons = @garde_robe.combinaisons(elements_qui_fit_2_par_2)
 
       # alors
       expect(combinaisons).to eq(attendu)
@@ -62,7 +62,7 @@ RSpec.describe GardeRobe do
     it "donne les combinaisons de n fois un élément et m fois un autre" do
       # étant donné
       @garde_robe = GardeRobe.new(1000)
-      rangements_qui_remplissent_2_par2 = [425, 150, 550]
+      elements_qui_fit_2_par2 = [425, 150, 550]
 
       attendu = [
         Combinaison.new([425, 425, 150]),
@@ -70,7 +70,23 @@ RSpec.describe GardeRobe do
       ]
 
       # quand
-      combinaisons = @garde_robe.combinaisons(rangements_qui_remplissent_2_par2)
+      combinaisons = @garde_robe.combinaisons(elements_qui_fit_2_par2)
+
+      # alors
+      expect(combinaisons).to eq(attendu)
+    end
+
+    it "donne les combinaisons de n fois un élément et m fois un autre" do
+      # étant donné
+      @garde_robe = GardeRobe.new(1000)
+      elements_qui_fit_avec_m_fois_l_un_et_n_fois_l_autre = [350, 60]
+
+      attendu = [
+        Combinaison.new([350, 350, 60, 60, 60, 60, 60])
+      ]
+
+      # quand
+      combinaisons = @garde_robe.combinaisons(elements_qui_fit_avec_m_fois_l_un_et_n_fois_l_autre)
 
       # alors
       expect(combinaisons).to eq(attendu)
