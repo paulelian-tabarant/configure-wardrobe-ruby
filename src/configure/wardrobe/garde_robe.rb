@@ -11,8 +11,18 @@ class GardeRobe
       elements.each do |other_element|
         next if other_element == element
 
-        if (@largeur - (element + other_element)).zero? && !combinaisons.include?([other_element, element])
-          combinaisons << [element, other_element]
+        (1..@largeur / element).each do |n|
+          essai = element * n + other_element
+          combinaison = ([element] * n + [other_element]).sort
+          if essai == @largeur && !combinaisons.include?(combinaison)
+            combinaisons << ([element] * n + [other_element]).sort
+          end
+        end
+
+        combinaison = [element, other_element].sort
+
+        if (@largeur - (element + other_element)).zero? && !combinaisons.include?(combinaison)
+          combinaisons << ([element, other_element]).sort
         end
       end
 

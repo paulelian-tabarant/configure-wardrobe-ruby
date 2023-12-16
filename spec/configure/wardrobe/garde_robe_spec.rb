@@ -52,9 +52,9 @@ RSpec.describe GardeRobe do
 
       # alors
       expect(combinaisons.size).to eq(3)
-      expect(combinaisons).to include([501, 499])
-      expect(combinaisons).to include([502, 498])
-      expect(combinaisons).to include([503, 497])
+      expect(combinaisons).to include([501, 499].sort)
+      expect(combinaisons).to include([502, 498].sort)
+      expect(combinaisons).to include([503, 497].sort)
     end
 
     it "donne les combinaisons de n fois un élément et m fois un autre" do
@@ -67,8 +67,8 @@ RSpec.describe GardeRobe do
 
       # alors
       expect(combinaisons.size).to eq(2)
-      expect(combinaisons).to include([425, 425, 150])
-      expect(combinaisons).to include([150, 150, 150, 550])
+      expect(combinaisons).to include([425, 425, 150].sort)
+      expect(combinaisons).to include([150, 150, 150, 550].sort)
     end
   end
 end
